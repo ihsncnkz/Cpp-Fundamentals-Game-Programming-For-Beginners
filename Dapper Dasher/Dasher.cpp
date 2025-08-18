@@ -233,6 +233,7 @@ int main()
         // End Drawing
         EndDrawing();
     }
+
     UnloadTexture(nebula);
     UnloadTexture(scarfy);
     UnloadTexture(background);
