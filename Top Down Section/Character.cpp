@@ -13,7 +13,7 @@ Character::Character(int winWidth, int windHeight)
 
 void Character::Tick(float deltaTime)
 {
-    worldPosLastFrame = worldPos;
+    BaseCharacter::Tick(deltaTime);
 
     Vector2 direction{};
     if (IsKeyDown(KEY_A))
@@ -35,24 +35,4 @@ void Character::Tick(float deltaTime)
     {
         texture = idle;
     }
-
-    // Update Animation frame
-    runningTime += deltaTime;
-    if (runningTime >= updateTime)
-    {
-        frame++;
-        runningTime = 0.f;
-        if (frame > maxFrame)
-            frame = 0;
-    }
-
-    // Draw the chracter
-    Rectangle source{frame * width, 0.f, rightLeft * width, height};
-    Rectangle dest{screenPos.x, screenPos.y, scale * width, scale * height};
-    DrawTexturePro(texture, source, dest, Vector2{}, 0.f, WHITE);
-}
-
-void Character::undoMovement()
-{
-    worldPos = worldPosLastFrame;
 }
